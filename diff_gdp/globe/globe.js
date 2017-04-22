@@ -15,9 +15,14 @@ var DAT = DAT || {};
 DAT.Globe = function(container, opts) {
   opts = opts || {};
 
-  var colorFn = opts.colorFn || function(x) {
+  var colorFn = function(x) {
     var c = new THREE.Color();
-    c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
+    if (x < 0) {
+      // if negative, make red
+      c.setHSL( 0.0, 1.0, 0.4 );
+    } else {
+      // if positive, make green
+      c.setHSL( 0.5, 0.2, 0.6 )
     return c;
   };
   var imgDir = opts.imgDir || './globe/';
