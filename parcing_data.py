@@ -1,5 +1,11 @@
 import xlrd
+import os
+
 file = "GDP_data.xls"
+destination = "java_script.txt"
+
+myfile = open(destination, "w")
+
 
 
 sheet = xlrd.open_workbook(file)
@@ -43,14 +49,22 @@ def make_matrix(n,m,array_names,dates,sheet): # This generates an nxm array
 
 data = make_matrix(sheet_length,sheet_width-2,country_names,dates,sheet0)
 
-for i in range(sheet_length):
-    print("\n")
-    for j in range(sheet_width -2):
-        print(data[i][j],end=" , ")
+# for i in range(sheet_length):
+#     print("\n")
+#     for j in range(sheet_width -2):
+#         print(data[i][j],end=" , ")
 
 
+def out_put_text(lst):
+    default = ": { fillKey: \"authorHasTravledTo},"
+    for i in lst:
+        str = ""
+        str+= i+default
+        print(str)
+
+        myfile.write(str)
+        myfile.write("\n")
 
 
-
-
+out_put_text(country_names)
 
