@@ -160,15 +160,18 @@ def raw_json():
                 myfile.write(",")
 
         myfile.write("]")
+
         if(i < sheet_width -3):
             myfile.write("],")
         else:
              myfile.write("]]")
 
+raw_json()
+
 destination = "gdp_scaled.json"
 
 myfile = open(destination,"w")
-
+myfile.write("[")
 def scaled_json():
     max = max_gdp()
     for i in range(sheet_width-2):
@@ -187,16 +190,19 @@ def scaled_json():
             myfile.write(",")
             myfile.write(long)
             myfile.write(",")
-            myfile.write(str(gdp//max))
+            # if(float(gdp/max) < 2/100):
+            #     myfile.write(str(0))
+            # else:
+            myfile.write(str(float(20*(gdp/max))))
             if(j < sheet_length-2):
                 myfile.write(",")
 
         myfile.write("]")
+
         if(i < sheet_width -3):
             myfile.write("],")
         else:
              myfile.write("]]")
-
 
 
 scaled_json()
