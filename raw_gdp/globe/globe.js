@@ -15,7 +15,7 @@ var DAT = DAT || {};
 DAT.Globe = function(container, opts) {
   opts = opts || {};
 
-  var colorFn = opts.colorFn || function(x) {
+  var colorFn = function(x) {
     var c = new THREE.Color();
     if (x < 0) {
       // if negative, make red
