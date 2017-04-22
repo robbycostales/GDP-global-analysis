@@ -17,12 +17,15 @@ DAT.Globe = function(container, opts) {
 
   var colorFn = function(x) {
     var c = new THREE.Color();
-    if (x < 0) {
-      // if negative, make red
-      c.setHSL( 0.0, 1.0, 0.4 );
-    } else {
-      // if positive, make green
+    if (x > 0) {
+      // if positive
       c.setHSL( 0.5, 0.2, 0.6 );
+    } else if (x == 0 ){
+      // if no change
+      c.setHSL( 0.0, 0.0, 0.0 );
+    } else {
+      // if negative
+      c.setHSL( 0.0, 1.0, 0.4 );
     }
     return c;
   };
@@ -174,6 +177,7 @@ DAT.Globe = function(container, opts) {
   function addData(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
 
+    color = opts.color;
     opts.animated = opts.animated || false;
     this.is_animated = opts.animated;
     opts.format = opts.format || 'magnitude'; // other option is 'legend'
@@ -193,7 +197,7 @@ DAT.Globe = function(container, opts) {
         for (i = 0; i < data.length; i += step) {
           lat = data[i];
           lng = data[i + 1];
-//        size = data[i + 2];
+        // size = data[i + 2];
           color = colorFnWrapper(data,i);
           size = 0;
           addPoint(lat, lng, size, color, this._baseGeometry);
@@ -210,10 +214,22 @@ DAT.Globe = function(container, opts) {
     for (i = 0; i < data.length; i += step) {
       lat = data[i];
       lng = data[i + 1];
-      color = colorFnWrapper(data,i);
+      // color = colorFnWrapper(data,i);
+
+      // sets color
+      var c = new THREE.Color();
+      c = color;
+
+      // makes sure to use absolute value of size
+      if (size < 0){
+        size = size*(-1);
+      }
       size = data[i + 2];
       size = size*200;
-      addPoint(lat, lng, size, color, subgeo);
+
+      // UPDATE COLORS
+
+      addPoint(lat, lng, size, c, subgeo);
     }
     if (opts.animated) {
       this._baseGeometry.morphTargets.push({'name': opts.name, vertices: subgeo.vertices});

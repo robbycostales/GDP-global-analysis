@@ -207,7 +207,7 @@ def diff_json():
                 continue
             (date,gdp) = data[j][i+1]
 
-            if j==0:
+            if i==0:
                 diff_gdp = 0
             else:
                 # = current - past
