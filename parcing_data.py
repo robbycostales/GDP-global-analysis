@@ -128,38 +128,78 @@ long_lad_scraper(html)
 
 myfile.write("[")
 
-for i in range(sheet_width-2):
-    myfile.write("[")
-    myfile.write('"'+str(dates[i+2])+'"'+","+"[")
-    for j in range(sheet_length):
-        # if len(data[j][i+1]) != 2:
-        #      print(len(data[j][i+1]), data[j][i+1])
-        (lat, long) = lats_and_longs[j]
-        if(lat and long == "e"):
-            continue
-        (date,gdp) = data[j][i+1]
-        myfile.write(lat)
-        myfile.write(",")
-        myfile.write(long)
-        myfile.write(",")
-        myfile.write(str(gdp))
-        if(j < sheet_length-2):
+def max_gdp():
+    max = 0
+    for i in range(sheet_width-2):
+        for j in range(sheet_length):
+            (date,gdp) = data[j][i+1]
+            if gdp > max:
+                max = gdp
+    return max
+
+
+def raw_json():
+    for i in range(sheet_width-2):
+        myfile.write("[")
+        myfile.write('"'+str(dates[i+2])+'"'+","+"[")
+
+        for j in range(sheet_length):
+            # if len(data[j][i+1]) != 2:
+            #      print(len(data[j][i+1]), data[j][i+1])
+            (lat, long) = lats_and_longs[j]
+            if(lat and long == "e"):
+                continue
+            (date,gdp) = data[j][i+1]
+
+            myfile.write(lat)
             myfile.write(",")
+            myfile.write(long)
+            myfile.write(",")
+            myfile.write(str(gdp))
+            if(j < sheet_length-2):
+                myfile.write(",")
 
-    myfile.write("]")
-    if(i < sheet_width -3):
-        myfile.write("],")
-    else:
-         myfile.write("]]")
+        myfile.write("]")
+        if(i < sheet_width -3):
+            myfile.write("],")
+        else:
+             myfile.write("]]")
+
+destination = "gdp_scaled.json"
+
+myfile = open(destination,"w")
+
+def scaled_json():
+    max = max_gdp()
+    for i in range(sheet_width-2):
+        myfile.write("[")
+        myfile.write('"'+str(dates[i+2])+'"'+","+"[")
+
+        for j in range(sheet_length):
+            # if len(data[j][i+1]) != 2:
+            #      print(len(data[j][i+1]), data[j][i+1])
+            (lat, long) = lats_and_longs[j]
+            if(lat and long == "e"):
+                continue
+            (date,gdp) = data[j][i+1]
+
+            myfile.write(lat)
+            myfile.write(",")
+            myfile.write(long)
+            myfile.write(",")
+            myfile.write(str(gdp//max))
+            if(j < sheet_length-2):
+                myfile.write(",")
+
+        myfile.write("]")
+        if(i < sheet_width -3):
+            myfile.write("],")
+        else:
+             myfile.write("]]")
 
 
 
-
-
-
-
-
-
+scaled_json()
 
 
 
