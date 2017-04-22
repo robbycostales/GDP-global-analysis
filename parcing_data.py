@@ -138,7 +138,6 @@ for i in range(sheet_width-2):
         if(lat and long == "e"):
             continue
         (date,gdp) = data[j][i+1]
-
         myfile.write(lat)
         myfile.write(",")
         myfile.write(long)
@@ -152,6 +151,8 @@ for i in range(sheet_width-2):
         myfile.write("],")
     else:
          myfile.write("]]")
+
+
 
 
 
