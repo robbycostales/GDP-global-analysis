@@ -1,7 +1,8 @@
-# Drug_Accessibility
+# International GDP Analysis
 
-Analysis of drug prices in different countries, and much much more (hopefully)
+Please stay tuned for updates on how to use our code!
+
 
 This project is avaliable through git via:
-- SSH: git@src-code.simons-rock.edu:rcostales15/Drug_Accessibility.git
-- HTTPS: https://src-code.simons-rock.edu/git/rcostales15/Drug_Accessibility.git
+- SSH: git@src-code.simons-rock.edu:rcostales15/Hackathon_2017.git
+- HTTPS: https://src-code.simons-rock.edu/git/rcostales15/Hackathon_2017.git

@@ -169,7 +169,7 @@
   </div>
 
   <div id="title">
-    World Population
+    GDP Comparison by Country
   </div>
 
   <a id="ce" href="http://www.chromeexperiments.com/globe">
@@ -192,7 +192,7 @@
 
       console.log(globe);
       var i, tweens = [];
-      
+
       var settime = function(globe, t) {
         return function() {
           new TWEEN.Tween(globe).to({time: t/years.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
@@ -207,16 +207,16 @@
           y.setAttribute('class', 'year active');
         };
       };
-      
+
       for(var i = 0; i<years.length; i++) {
         var y = document.getElementById('year'+years[i]);
         y.addEventListener('mouseover', settime(globe,i), false);
       }
-      
+
       var xhr;
       TWEEN.start();
-      
-      
+
+
       xhr = new XMLHttpRequest();
       xhr.open('GET', '/globe/gdp.json', true);
       xhr.onreadystatechange = function(e) {
