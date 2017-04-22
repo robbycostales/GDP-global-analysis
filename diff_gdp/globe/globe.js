@@ -22,9 +22,11 @@ DAT.Globe = function(container, opts) {
       c.setHSL( 0.0, 1.0, 0.4 );
     } else {
       // if positive, make green
-      c.setHSL( 0.5, 0.2, 0.6 )
+      c.setHSL( 0.5, 0.2, 0.6 );
+    }
     return c;
   };
+
   var imgDir = opts.imgDir || './globe/';
 
   var Shaders = {
@@ -408,5 +410,4 @@ DAT.Globe = function(container, opts) {
   this.scene = scene;
 
   return this;
-
 };
