@@ -211,21 +211,23 @@
           if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             window.data = data;
+            console.log("changing color in XHR");
+
             for (i=0;i<data.length;i++) {
 
-              var c = new THREE.Color();
-              if (data[i][0] > 0) {
-                // if positive
-                c.setHSL( 0.5, 0.2, 0.6 );
-              } else if (data[i][0] == 0 ){
-                // if no change
-                c.setHSL( 0.0, 0.0, 0.0 );
-              } else {
-                // if negative
-                c.setHSL( 0.0, 1.0, 0.4 );
-              }
+              // var c = new THREE.Color();
+              // if (data[i][1] > 0) {
+              //   // if positive
+              //   c.setHSL( 0.5, 0.2, 0.6 );
+              // } else if (data[i][1] == 0 ){
+              //   // if no change
+              //   c.setHSL( 0.0, 0.0, 0.0 );
+              // } else {
+              //   // if negative
+              //   c.setHSL( 0.0, 1.0, 0.4 );
+              // }
 
-              globe.addData(data[i][1], {color: c , format: 'magnitude', name: data[i][0], animated: true});
+              globe.addData(data[i][1], { format: 'magnitude', name: data[i][0], animated: true});
 
             }
             globe.createPoints();

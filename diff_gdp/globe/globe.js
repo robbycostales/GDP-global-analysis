@@ -193,14 +193,25 @@ DAT.Globe = function(container, opts) {
 
     if (opts.animated) {
       if (this._baseGeometry === undefined) {
+        console.log("changing color in basegeometry");
         this._baseGeometry = new THREE.Geometry();
         for (i = 0; i < data.length; i += step) {
           lat = data[i];
           lng = data[i + 1];
-        // size = data[i + 2];
-          color = colorFnWrapper(data,i);
+          // size = data[i + 2];
           size = 0;
-          addPoint(lat, lng, size, color, this._baseGeometry);
+          var c = new THREE.Color();
+          if (size > 0) {
+            // if positive
+            c.setHSL( 0.5, 0.2, 0.6 );
+          } else if (size == 0 ){
+            // if no change
+            c.setHSL( 0.0, 0.0, 0.0 );
+          } else {
+            // if negative
+            c.setHSL( 0.0, 1.0, 0.4 );
+          }
+          addPoint(lat, lng, size, c, this._baseGeometry);
         }
       }
       if(this._morphTargetId === undefined) {
@@ -211,20 +222,30 @@ DAT.Globe = function(container, opts) {
       opts.name = opts.name || 'morphTarget'+this._morphTargetId;
     }
     var subgeo = new THREE.Geometry();
+    console.log("changing color in subgeo");
     for (i = 0; i < data.length; i += step) {
       lat = data[i];
       lng = data[i + 1];
       // color = colorFnWrapper(data,i);
-
+      size = parseInt(data[i + 2]);
       // sets color
       var c = new THREE.Color();
-      c = color;
+      if (size > 0) {
+        // if positive
+        c.setHSL( 0.5, 0.2, 0.6 );
+      } else if (size == 0 ){
+        // if no change
+        c.setHSL( 0.0, 0.0, 0.0 );
+      } else {
+        // if negative
+        c.setHSL( 0.0, 1.0, 0.4 );
+      }
 
       // makes sure to use absolute value of size
+
       if (size < 0){
         size = size*(-1);
       }
-      size = data[i + 2];
       size = size*200;
 
       // UPDATE COLORS
