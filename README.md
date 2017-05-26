@@ -6,8 +6,8 @@ Please stay tuned for updates on how to use our code!
 
 Contributors:
 
-Robert Costales
-Zoe Offermann
-Trevor Turner
-Catherine Liu
-Gary Liu
+Robert Costales  
+Zoe Offermann  
+Trevor Turner  
+Catherine Liu  
+Gary Liu  
