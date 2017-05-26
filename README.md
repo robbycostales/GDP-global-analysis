@@ -1,8 +1,13 @@
-# International GDP Analysis
+# Global Analysis of GDPs
+
+2017 Google Hackathon (@ Bard College at Simon's Rock) Project.
 
 Please stay tuned for updates on how to use our code!
 
+Contributors:
 
-This project is avaliable through git via:
-- SSH: git@src-code.simons-rock.edu:rcostales15/Hackathon_2017.git
-- HTTPS: https://src-code.simons-rock.edu/git/rcostales15/Hackathon_2017.git
+Robert Costales
+Zoe Offermann
+Trevor Turner
+Catherine Liu
+Gary Liu
